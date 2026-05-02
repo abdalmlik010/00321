@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us – SpaceWise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html" class="logo">🛋️ SpaceWise</a>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+        <ul id="navMenu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="design.html">Design Room</a></li>
+            <li><a href="furniture.html">Furniture</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+
+        <div class="section-title">
+            <h1>Contact Us</h1>
+            <div class="divider"></div>
+            <p>We are here to help you design your dream home</p>
+        </div>
+
+        <div class="contact-wrapper">
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                <p>We'd love to hear from you. Reach out with any questions about our AI furniture design service.</p>
+
+                <div class="contact-detail">
+                    <span>📍</span>
+                    <div>
+                        <strong>Address</strong><br>
+                        <small>Riyadh, Saudi Arabia</small>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <span>📞</span>
+                    <div>
+                        <strong>Phone</strong><br>
+                        <small>+966-11-000-0000</small>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <span>📧</span>
+                    <div>
+                        <strong>Email</strong><br>
+                        <small>hello@spacewise.sa</small>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <span>🕐</span>
+                    <div>
+                        <strong>Working Hours</strong><br>
+                        <small>Sun – Thu: 9 AM – 6 PM</small>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <p style="color: var(--accent); font-weight: 600; margin-bottom: 10px;">Follow Us</p>
+                    <div style="display: flex; gap: 12px;">
+                        <span style="font-size: 1.8rem; cursor: pointer;">📘</span>
+                        <span style="font-size: 1.8rem; cursor: pointer;">📸</span>
+                        <span style="font-size: 1.8rem; cursor: pointer;">🐦</span>
+                        <span style="font-size: 1.8rem; cursor: pointer;">▶️</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Send a Message</h2>
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="contactName" placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="contactEmail" placeholder="example@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="contactPhone" placeholder="+966 5x xxx xxxx">
+                </div>
+
+                <div class="form-group">
+                    <label>Subject</label>
+                    <select id="contactSubject">
+                        <option>Furniture Design Inquiry</option>
+                        <option>Request a Quote</option>
+                        <option>Technical Support</option>
+                        <option>Suggestion or Complaint</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="contactMessage" placeholder="Write your message here..."></textarea>
+                </div>
+
+                <button class="submit-btn" onclick="sendMessage()">Send Message</button>
+
+                <div class="success-msg" id="successMsg">
+                    ✅ Your message has been sent successfully! We'll get back to you soon.
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <div class="section-padding">
+            <div class="section-title">
+                <h2>Our Team</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">👨‍💼</div>
+                    <h3>Ahmed Al-Zahrani</h3>
+                    <p>Project Manager</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">👩‍🎨</div>
+                    <h3>Sara Al-Otaibi</h3>
+                    <p>Interior Designer</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">👨‍💻</div>
+                    <h3>Mohammed Al-Qahtani</h3>
+                    <p>AI Developer</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="design.html">Design Room</a>
+            <a href="furniture.html">Furniture</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p>All Rights Reserved &copy; 2025 – SpaceWise</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('open');
+        }
+
+        function sendMessage() {
+            const name    = document.getElementById('contactName').value;
+            const email   = document.getElementById('contactEmail').value;
+            const message = document.getElementById('contactMessage').value;
+
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            document.getElementById('successMsg').classList.add('show');
+            document.getElementById('contactName').value    = '';
+            document.getElementById('contactEmail').value   = '';
+            document.getElementById('contactPhone').value   = '';
+            document.getElementById('contactMessage').value = '';
+
+            setTimeout(() => {
+                document.getElementById('successMsg').classList.remove('show');
+            }, 4000);
+        }
+    </script>
+
+</body>
+</html>

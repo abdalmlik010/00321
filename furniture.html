@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture Catalog – SpaceWise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html" class="logo">🛋️ SpaceWise</a>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+        <ul id="navMenu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="design.html">Design Room</a></li>
+            <li><a href="furniture.html" class="active">Furniture</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+
+        <div class="section-title">
+            <h1>Furniture Catalog</h1>
+            <div class="divider"></div>
+            <p>Browse our curated collection of furniture pieces with dimensions and pricing</p>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterFurniture('all', this)">All</button>
+            <button class="filter-btn" onclick="filterFurniture('living', this)">Living Room</button>
+            <button class="filter-btn" onclick="filterFurniture('bedroom', this)">Bedroom</button>
+            <button class="filter-btn" onclick="filterFurniture('dining', this)">Dining Room</button>
+            <button class="filter-btn" onclick="filterFurniture('office', this)">Office</button>
+        </div>
+
+        <!-- Catalog Grid -->
+        <div class="catalog-grid" id="catalogGrid">
+
+            <!-- Living Room -->
+            <div class="furniture-card" data-category="living">
+                <div class="furniture-emoji">🛋️</div>
+                <div class="furniture-info">
+                    <span class="room-tag">Living Room</span>
+                    <h3>3-Seat Luxury Sofa</h3>
+                    <p>Modern sofa with premium fabric upholstery and solid wood legs</p>
+                    <div class="dimensions-badge">📐 2.2m × 0.9m × 0.85m</div><br>
+                    <span class="price-tag">2,800 SAR</span>
+                </div>
+            </div>
+
+            <div class="furniture-card" data-category="living">
+                <div class="furniture-emoji">📺</div>
+                <div class="furniture-info">
+                    <span class="room-tag">Living Room</span>
+                    <h3>TV Entertainment Unit</h3>
+                    <p>Wooden TV unit with storage drawers and cable management</p>
+                    <div class="dimensions-badge">📐 1.5m × 0.4m × 0.5m</div><br>
+                    <span class="price-tag">1,200 SAR</span>
+                </div>
+            </div>
+
+            <div class="furniture-card" data-category="living">
+                <div class="furniture-emoji">☕</div>
+                <div class="furniture-info">
+                    <span class="room-tag">Living Room</span>
+                    <h3>Glass Coffee Table</h3>
+                    <p>Center table with tempered glass top and metal frame</p>
+                    <div class="dimensions-badge">📐 1.1m × 0.6m × 0.45m</div><br>
+                    <span class="price-tag">650 SAR</span>
+                </div>
+            </div>
+
+            <div class="furniture-card" data-category="living">
+                <div class="furniture-emoji">🪑</div>
+                <div class="furniture-info">
+                    <span class="room-tag">Living Room</span>
+                    <h3>Single Accent Chair</h3>
+                    <p>Comfortable armchair with velvet fabric and tapered legs</p>
+                    <div class="dimensions-badge">📐 0.9m × 0.9m × 0.85m</div><br>
+                    <span class="price-tag">900 SAR</span>
+                </div>
+            </div>
+
+            <!-- Bedroom -->
+            <div class="furniture-card" data-category="bedroom">
+                <div class="furniture-emoji">🛏️</div>
+                <div class="furniture-info">
+                    <span class="room-tag">Bedroom</span>
+                    <h3>King Size Bed Frame</h3>
+                    <p>Elegant bed with upholstered headboard and solid wood base</p>
+                    <div class="dimensions-badge">📐 2.0m × 1.8m × 1.2m</div><br>
+                    <span class="price-tag">3,200 SAR</span>
+                </div>
+            </div>
+
+            <div class="furniture-card" data-category="bedroom">
+                <div class="furniture-emoji">🚪</div>
+                <div class="furniture-info">
+                    <span class="room-tag">Bedroom</span>
+                    <h3>4-Door Wardrobe</h3>
+                    <p>Spacious wardrobe with mirrored doors and multiple storage sections</p>
+                    <div class="dimensions-badge">📐 2.0m × 0.6m × 2.2m</div><br>
+                    <span class="price-tag">2,100 SAR</span>
+                </div>
+            </div>
+
+            <div class="furniture-card" data-category="bedroom">
+                <div class="furniture-emoji">🪞</div>
+                <div class="furniture-info">
+                    <span class="room-tag">Bedroom</span>
+                    <h3>Dressing Table with Mirror</h3>
+                    <p>Classic dressing table with oval mirror and three storage drawers</p>
+                    <div class="dimensions-badge">📐 0.9m × 0.45m × 1.5m</div><br>
+                    <span class="price-tag">750 SAR</span>
+                </div>
+            </div>
+
+            <div class="furniture-card" data-category="bedroom">
+                <div class="furniture-emoji">🪴</div>
+                <div class="furniture-info">
+                    <span class="room-tag">Bedroom</span>
+                    <h3>Bedside Nightstand</h3>
+                    <p>Compact nightstand with one drawer and open shelf</p>
+                    <div class="dimensions-badge">📐 0.5m × 0.5m × 0.6m</div><br>
+                    <span class="price-tag">320 SAR</span>
+                </div>
+            </div>
+
+            <!-- Dining Room -->
+            <div class="furniture-card" data-category="dining">
+                <div class="furniture-emoji">🍽️</div>
+                <div class="furniture-info">
+                    <span class="room-tag">Dining Room</span>
+                    <h3>6-Person Dining Table</h3>
+                    <p>Solid natural wood dining table with modern design</p>
+                    <div class="dimensions-badge">📐 1.8m × 1.0m × 0.76m</div><br>
+                    <span class="price-tag">1,800 SAR</span>
+                </div>
+            </div>
+
+            <div class="furniture-card" data-category="dining">
+                <div class="furniture-emoji">🪑</div>
+                <div class="furniture-info">
+                    <span class="room-tag">Dining Room</span>
+                    <h3>Dining Chairs (Set of 6)</h3>
+                    <p>Comfortable chairs with padded seats and wooden frame</p>
+                    <div class="dimensions-badge">📐 0.45m × 0.45m × 0.9m</div><br>
+                    <span class="price-tag">1,500 SAR</span>
+                </div>
+            </div>
+
+            <div class="furniture-card" data-category="dining">
+                <div class="furniture-emoji">🗄️</div>
+                <div class="furniture-info">
+                    <span class="room-tag">Dining Room</span>
+                    <h3>Sideboard Buffet</h3>
+                    <p>Wooden sideboard for storing tableware and linens</p>
+                    <div class="dimensions-badge">📐 1.5m × 0.45m × 0.85m</div><br>
+                    <span class="price-tag">1,200 SAR</span>
+                </div>
+            </div>
+
+            <!-- Office -->
+            <div class="furniture-card" data-category="office">
+                <div class="furniture-emoji">💻</div>
+                <div class="furniture-info">
+                    <span class="room-tag">Office</span>
+                    <h3>L-Shape Work Desk</h3>
+                    <p>Spacious L-shaped desk with side drawers and cable tray</p>
+                    <div class="dimensions-badge">📐 1.6m × 0.7m × 0.75m</div><br>
+                    <span class="price-tag">1,400 SAR</span>
+                </div>
+            </div>
+
+            <div class="furniture-card" data-category="office">
+                <div class="furniture-emoji">🪑</div>
+                <div class="furniture-info">
+                    <span class="room-tag">Office</span>
+                    <h3>Ergonomic Office Chair</h3>
+                    <p>Adjustable chair with lumbar support and padded armrests</p>
+                    <div class="dimensions-badge">📐 0.65m × 0.65m × 1.2m</div><br>
+                    <span class="price-tag">850 SAR</span>
+                </div>
+            </div>
+
+            <div class="furniture-card" data-category="office">
+                <div class="furniture-emoji">📚</div>
+                <div class="furniture-info">
+                    <span class="room-tag">Office</span>
+                    <h3>Open Bookshelf</h3>
+                    <p>5-tier wooden shelf for books, files, and decor</p>
+                    <div class="dimensions-badge">📐 0.8m × 0.3m × 2.0m</div><br>
+                    <span class="price-tag">720 SAR</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="design.html">Design Room</a>
+            <a href="furniture.html">Furniture</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p>All Rights Reserved &copy; 2025 – SpaceWise</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('open');
+        }
+
+        function filterFurniture(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.furniture-card').forEach(card => {
+                card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
+            });
+        }
+    </script>
+
+</body>
+</html>

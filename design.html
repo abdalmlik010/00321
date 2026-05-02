@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Your Room – SpaceWise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html" class="logo">🛋️ SpaceWise</a>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+        <ul id="navMenu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="design.html" class="active">Design Room</a></li>
+            <li><a href="furniture.html">Furniture</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+
+        <div class="section-title">
+            <h1>Design Your Room</h1>
+            <div class="divider"></div>
+            <p>Enter your room dimensions and get the perfect furniture layout with pricing</p>
+        </div>
+
+        <!-- Step Indicator -->
+        <div class="step-indicator">
+            <div class="step active">
+                <span class="step-num">1</span>
+                <span>Enter Dimensions</span>
+            </div>
+            <div class="step">
+                <span class="step-num">2</span>
+                <span>Choose Style</span>
+            </div>
+            <div class="step">
+                <span class="step-num">3</span>
+                <span>Get Results</span>
+            </div>
+        </div>
+
+        <div class="design-container">
+
+            <!-- Input Form -->
+            <div class="form-section">
+                <h2>Room Details</h2>
+
+                <div class="form-group">
+                    <label>Room Type</label>
+                    <select id="roomType">
+                        <option value="living">Living Room</option>
+                        <option value="bedroom">Bedroom</option>
+                        <option value="dining">Dining Room</option>
+                        <option value="office">Home Office</option>
+                        <option value="kids">Kids Room</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Length (meters)</label>
+                    <input type="number" id="roomLength" placeholder="e.g. 5" min="2" max="20" step="0.5" value="5">
+                </div>
+
+                <div class="form-group">
+                    <label>Width (meters)</label>
+                    <input type="number" id="roomWidth" placeholder="e.g. 4" min="2" max="20" step="0.5" value="4">
+                </div>
+
+                <div class="form-group">
+                    <label>Ceiling Height (meters)</label>
+                    <input type="number" id="roomHeight" placeholder="e.g. 3" min="2" max="5" step="0.1" value="3">
+                </div>
+
+                <div class="form-group">
+                    <label>Design Style</label>
+                    <select id="designStyle">
+                        <option value="modern">Modern</option>
+                        <option value="classic">Classic</option>
+                        <option value="minimalist">Minimalist</option>
+                        <option value="bohemian">Bohemian</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Budget Range (SAR)</label>
+                    <select id="budget">
+                        <option value="low">Under 5,000</option>
+                        <option value="medium" selected>5,000 – 15,000</option>
+                        <option value="high">15,000 – 30,000</option>
+                        <option value="luxury">Above 30,000</option>
+                    </select>
+                </div>
+
+                <button class="submit-btn" onclick="generateDesign()">
+                    🤖 Generate My Layout
+                </button>
+            </div>
+
+            <!-- Room Preview -->
+            <div class="room-preview">
+                <h2>Room Layout</h2>
+                <p style="font-size:0.85rem; color:var(--text-light); margin-bottom:14px;">The furniture placement map will appear here after clicking Generate</p>
+
+                <div class="room-canvas" id="roomCanvas">
+                    <div class="room-floor" id="roomFloor">
+                        <span class="room-label" id="roomDimensionLabel">5m × 4m</span>
+                        <div class="door-indicator"></div>
+                        <div class="window-indicator"></div>
+                        <p style="text-align:center; margin-top:42%; color:var(--primary-light); font-size:0.82rem;">Enter dimensions and click Generate</p>
+                    </div>
+                </div>
+
+                <!-- Furniture Result -->
+                <div id="furnitureResult" class="hidden">
+                    <div class="result-box overflow-section">
+                        <h3 style="margin-bottom:14px;">Suggested Furniture List</h3>
+                        <div id="furnitureList"></div>
+                        <div class="total-price">
+                            <span>Total Cost</span>
+                            <span id="totalAmount">0 SAR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="design.html">Design Room</a>
+            <a href="furniture.html">Furniture</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p>All Rights Reserved &copy; 2025 – SpaceWise</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('open');
+        }
+
+        const furnitureData = {
+            living: [
+                { name: "3-Seat Sofa",      icon: "🛋️", w: 28, h: 12, top: 10, left: 10, color: "#8B6F47", price: 2800, dims: "2.2m × 0.9m" },
+                { name: "Coffee Table",     icon: "☕", w: 14, h: 10, top: 25, left: 33, color: "#6B4F2F", price: 650,  dims: "1.1m × 0.6m" },
+                { name: "TV Unit",          icon: "📺", w: 20, h:  8, top:  5, left: 60, color: "#4A3525", price: 1200, dims: "1.5m × 0.4m" },
+                { name: "Armchair",         icon: "🪑", w: 12, h: 12, top: 10, left: 80, color: "#9B7A5A", price: 900,  dims: "0.9m × 0.9m" },
+                { name: "Side Shelf",       icon: "📚", w:  8, h: 20, top: 40, left: 88, color: "#5A3E2B", price: 480,  dims: "0.4m × 1.5m" },
+            ],
+            bedroom: [
+                { name: "King Bed",         icon: "🛏️", w: 30, h: 25, top:  8, left: 35, color: "#9B7A5A", price: 3200, dims: "2.0m × 1.8m" },
+                { name: "Wardrobe",         icon: "🚪", w: 10, h: 28, top:  8, left: 10, color: "#5A3E2B", price: 2100, dims: "0.6m × 2.0m" },
+                { name: "Right Nightstand", icon: "🪴", w:  8, h:  8, top: 15, left: 68, color: "#7A5C3E", price: 320,  dims: "0.5m × 0.5m" },
+                { name: "Left Nightstand",  icon: "💡", w:  8, h:  8, top: 15, left: 23, color: "#7A5C3E", price: 320,  dims: "0.5m × 0.5m" },
+                { name: "Dressing Table",   icon: "🪞", w: 12, h: 10, top: 65, left: 10, color: "#8B6F47", price: 750,  dims: "0.9m × 0.45m" },
+            ],
+            dining: [
+                { name: "Dining Table",     icon: "🍽️", w: 26, h: 18, top: 30, left: 37, color: "#6B4F2F", price: 1800, dims: "1.8m × 1.0m" },
+                { name: "Dining Chairs ×6", icon: "🪑", w:  8, h:  8, top: 20, left: 38, color: "#8B6F47", price: 1500, dims: "0.45m × 0.45m" },
+                { name: "Sideboard",        icon: "🗄️", w: 20, h:  8, top:  8, left: 10, color: "#5A3E2B", price: 1200, dims: "1.5m × 0.45m" },
+                { name: "Display Shelf",    icon: "🏺", w:  8, h: 18, top:  8, left: 82, color: "#7A5C3E", price: 580,  dims: "0.4m × 1.2m" },
+            ],
+            office: [
+                { name: "L-Shape Desk",     icon: "💻", w: 24, h: 12, top: 10, left: 10, color: "#5A3E2B", price: 1400, dims: "1.6m × 0.7m" },
+                { name: "Office Chair",     icon: "🪑", w: 12, h: 12, top: 25, left: 16, color: "#8B6F47", price: 850,  dims: "0.65m × 0.65m" },
+                { name: "Bookshelf",        icon: "📚", w: 10, h: 35, top:  8, left: 82, color: "#6B4F2F", price: 720,  dims: "0.35m × 2.0m" },
+                { name: "Filing Cabinet",   icon: "🗂️", w:  8, h: 15, top: 60, left: 10, color: "#7A5C3E", price: 480,  dims: "0.4m × 1.0m" },
+            ],
+            kids: [
+                { name: "Kids Bed",         icon: "🛏️", w: 22, h: 18, top:  8, left: 10, color: "#9B7A5A", price: 1800, dims: "1.4m × 0.9m" },
+                { name: "Study Desk",       icon: "✏️", w: 18, h: 10, top:  8, left: 70, color: "#5A3E2B", price: 650,  dims: "1.2m × 0.6m" },
+                { name: "Toy Storage",      icon: "🧸", w: 10, h: 20, top: 55, left: 10, color: "#8B6F47", price: 580,  dims: "0.6m × 1.2m" },
+                { name: "Colorful Shelf",   icon: "📚", w:  8, h: 25, top:  8, left: 58, color: "#7A5C3E", price: 380,  dims: "0.35m × 1.5m" },
+            ]
+        };
+
+        function generateDesign() {
+            const roomType = document.getElementById('roomType').value;
+            const length   = parseFloat(document.getElementById('roomLength').value) || 5;
+            const width    = parseFloat(document.getElementById('roomWidth').value)  || 4;
+
+            document.getElementById('roomDimensionLabel').textContent = length + 'm × ' + width + 'm';
+
+            const floor = document.getElementById('roomFloor');
+            floor.innerHTML = '<span class="room-label">' + length + 'm × ' + width + 'm</span><div class="door-indicator"></div><div class="window-indicator"></div>';
+
+            const items = furnitureData[roomType];
+            let total = 0, listHTML = '';
+
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'furniture-item';
+                div.style.cssText = `width:${item.w}%;height:${item.h}%;top:${item.top}%;left:${item.left}%;background-color:${item.color};font-size:0.6rem;`;
+                div.innerHTML = item.icon + '<br>' + item.name;
+                div.title = item.name + ' – ' + item.dims;
+                floor.appendChild(div);
+
+                total += item.price;
+                listHTML += `
+                    <div class="result-item">
+                        <span>${item.icon} ${item.name} <small style="color:var(--text-light)">(${item.dims})</small></span>
+                        <span class="price-tag">${item.price.toLocaleString()} SAR</span>
+                    </div>`;
+            });
+
+            document.getElementById('furnitureList').innerHTML = listHTML;
+            document.getElementById('totalAmount').textContent = total.toLocaleString() + ' SAR';
+            document.getElementById('furnitureResult').classList.remove('hidden');
+            document.getElementById('furnitureResult').classList.add('show');
+        }
+    </script>
+
+</body>
+</html>
